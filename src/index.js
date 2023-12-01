@@ -62,7 +62,7 @@ function Header(){
     // const style = {color: 'red', fontSize: "48px", textTransform: 'uppercase'}
     const style = {}
     return (
-    <header className="header">
+    <header className="header footer">
         <h1 style={style}>Fast React Pizza Co.</h1>
     </header>
     )
@@ -90,32 +90,32 @@ function Menu(){
     return (
     <main className="menu">
         <h2>Our Menu</h2>
-        <Pizza 
-            name='Pizza Spinaci' 
-            ingredients='Tomato, mozarella, spinach, and ricotta cheese' 
-            photoName="pizzas/spinaci.jpg"
-            price= {10}
-        />
-        <Pizza 
+        <ul className="pizzas">
+            {pizzaData.map((pizza)=> (
+                <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+
+        </ul>
+        {/* <Pizza 
             name= 'Pizza Funghi'
             ingredients='Tomato, mushrooms'
             price= {12}
             photoName='pizzas/funghi.jpg'
         />
         <Pizza />
-        <Pizza />
+        <Pizza /> */}
     </main >
     );
 }
 
 function Pizza(props){
     return (
-        <div>
-            <img src={props.photoName} alt={props.name}/>
-            <h3>{props.name}</h3>
-            <p>{props.ingredients}</p>
-            <span>{props.price}</span>
-        </div>
+        <li className="pizza">
+            <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}/>
+            <h3>{props.pizzaObj.name}</h3>
+            <p>{props.pizzaObj.ingredients}</p>
+            <span>{props.pizzaObj.price}</span>
+        </li>
     );
 }
 
